@@ -11,7 +11,11 @@ public class BowlingGame {
 		currentTry++;
 		
 		if(currentTry == 4){
-			throw new GameOverException("Game Over!!!");
+			throw new GameOverException("Game Over!!! 더이상 공을 던질 수 없습니다.");
+		}
+		
+		if(currentFrame ==10 && currentTry == 3){
+			throw new GameOverException("Game Over~");
 		}
 		
 		if (currentFrame!= 10) {
