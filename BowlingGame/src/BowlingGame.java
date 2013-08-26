@@ -13,16 +13,13 @@ public class BowlingGame {
 	}
 
 	private void makeBoard() {
-		board.add(new Frame(1));
-		board.add(new Frame(2));
-		board.add(new Frame(3));
-		board.add(new Frame(4));
-		board.add(new Frame(5));
-		board.add(new Frame(6));
-		board.add(new Frame(7));
-		board.add(new Frame(8));
-		board.add(new Frame(9));
-		board.add(new TenFrame(10));
+		for(int i = 1; i <= 9; i++){
+			board.add(new Frame(i));
+			board.get(i-1).initializeFrame();
+		}
+		TenFrame temp = new TenFrame(10);
+		temp.initializeTenFrame();
+		board.add(temp);
 	}
 
 	public void getCurrentTry() {
@@ -30,6 +27,8 @@ public class BowlingGame {
 	}
 
 	public void roll(int point) throws GameOverException {
+		
+		board.get(currentFrame-1).setSymbol(point);
 		
 		if(currentFrame == 10 && currentTry == 4){
 			throw new GameOverException("Game Over!!! 더이상 공을 던질 수 없습니다.");

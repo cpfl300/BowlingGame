@@ -1,6 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Frame {
-	int frameNumber;
+	private int frameNumber;
+	protected int rollIdx = 0;
+	private int point = 0;
+	public List<Symbol> frame;
 	
 	Frame(int frameNumber){
 		this.frameNumber = frameNumber;
@@ -10,4 +16,63 @@ public class Frame {
 		return frameNumber;
 	}
 
+	public void initializeFrame(){
+		frame = new ArrayList<Symbol>();
+		
+		frame.add(Symbol.BLANK);
+		frame.add(Symbol.BLANK);
+	}	
+	
+	public void setSymbol(int point) throws GameOverException {
+		if(point == 10) {
+			frame.set(rollIdx++, Symbol.STRIKE);
+			frame.set(rollIdx, Symbol.BLANK);
+			this.point = point;
+		}
+		
+		if(this.point != 10 && this.point + point == 10){
+			frame.set(rollIdx, Symbol.SPARE);
+			return;
+		}
+
+		this.point = point;
+		
+		switch (point) {
+		case 9: 
+			frame.set(rollIdx++, Symbol.NINE_POINT);
+			break;
+		case 8: 
+			frame.set(rollIdx++, Symbol.EIGHT_POINT);
+			break;
+		case 7: 
+			frame.set(rollIdx++, Symbol.SEVEN_POINT);
+			break;
+		case 6: 
+			frame.set(rollIdx++, Symbol.SIX_POINT);
+			break;
+		case 5: 
+			frame.set(rollIdx++, Symbol.FIVE_POINT);
+			break;
+		case 4: 
+			frame.set(rollIdx++, Symbol.FOUR_POINT);
+			break;
+		case 3: 
+			frame.set(rollIdx++, Symbol.THREE_POINT);
+			break;
+		case 2: 
+			frame.set(rollIdx++, Symbol.TWO_POINT);
+			break;
+		case 1: 
+			frame.set(rollIdx++, Symbol.ONE_POINT);
+			break;
+		case 0: 
+			frame.set(rollIdx++, Symbol.GUTTER);
+			break;
+		}		
+	}
+
+	
+	public List<Symbol> getFrame() {
+		return frame;
+	}
 }
