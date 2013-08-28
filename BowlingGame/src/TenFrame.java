@@ -5,6 +5,7 @@ import java.util.List;
 public class TenFrame extends Frame {
 	int frameNumber;
 	int rollcount = 0;
+	int tenFrameRoll = 0;
 	
 	TenFrame(int frameNumber){
 		super(frameNumber);
@@ -25,14 +26,25 @@ public class TenFrame extends Frame {
 
 	public void setSymbol(int point) throws GameOverException {
 		rollcount++;
+		tenFrameRoll++;
+		
+		if(tenFrameRoll == 1 && point != 10){
+			rollcount++;
+		}
 		
 		if(rollcount == 4){
 			throw new GameOverException("Game Over!!! 더이상 공을 던질 수 없습니다.");
 		}
 		
 		if(point == 10){
+			System.out.println("STRIKE!!!");
+			
 			frame.set(rollIdx++,Symbol.STRIKE);
 		}
 		else super.setSymbol(point);
+		
+		if(rollcount == 3) {
+			throw new GameOverException("Game Over~");
+		}
 	}
 }

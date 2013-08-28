@@ -30,11 +30,6 @@ public class BowlingGame {
 		
 		board.get(currentFrame-1).setSymbol(point);
 		
-		if(currentFrame == 10 && currentTry == 4){
-			throw new GameOverException("Game Over!!! 더이상 공을 던질 수 없습니다.");
-		}
-		
-		System.out.printf("%d개의 핀을 쓰러뜨렸습니다.\n", point);
 		currentTry++;
 		
 		if (currentFrame!= 10) {
@@ -42,9 +37,6 @@ public class BowlingGame {
 				currentFrame++;
 				currentTry = 1;
 			}
-		}
-		if (currentFrame == 10 && currentTry == 4) {
-			throw new GameOverException("Game Over~");
 		}
 	}
 }
