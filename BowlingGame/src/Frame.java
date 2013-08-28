@@ -6,6 +6,8 @@ public class Frame {
 	private int frameNumber;
 	protected int rollIdx = 0;
 	private int point = 0;
+	protected int score = 0;
+	
 	public List<Symbol> frame;
 	
 	Frame(int frameNumber){
@@ -24,6 +26,9 @@ public class Frame {
 	}	
 	
 	public void setSymbol(int point) throws GameOverException {
+		
+		this.score += point;
+		
 		if(point == 10) {
 			System.out.println("STRIKE!!!");
 			
@@ -80,5 +85,9 @@ public class Frame {
 	
 	public List<Symbol> getFrame() {
 		return frame;
+	}
+	
+	public int getScore(){
+		return this.score;
 	}
 }

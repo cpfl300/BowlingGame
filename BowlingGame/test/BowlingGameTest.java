@@ -2,12 +2,37 @@ import junit.framework.TestCase;
 
 public class BowlingGameTest extends TestCase {
 
-	BowlingGame play;
+	BowlingGame play = null;
+	
+	BowlingGame completeBoard;
 	
 
 	@Override
 	protected void setUp() throws Exception {
-		play = new BowlingGame();
+			play = new BowlingGame();
+			completeBoard = new BowlingGame();
+			completeBoard.roll(9);
+			completeBoard.roll(1);
+			completeBoard.roll(8);
+			completeBoard.roll(0);
+			completeBoard.roll(10);
+			completeBoard.roll(10);
+			completeBoard.roll(8);
+			completeBoard.roll(0);
+			completeBoard.roll(10);
+			completeBoard.roll(8);
+			completeBoard.roll(1);
+			completeBoard.roll(9);
+			completeBoard.roll(1);
+			completeBoard.roll(8);
+			completeBoard.roll(1);
+			completeBoard.roll(10);
+			completeBoard.roll(9);
+			try{
+			completeBoard.roll(1);
+			}catch (GameOverException e){
+				
+			}
 	}
 
 	public void testInitialize() throws Exception {
@@ -16,60 +41,60 @@ public class BowlingGameTest extends TestCase {
 
 	public void testRoll() throws Exception {
 
-		 try {
-//		 play.getCurrentTry(); // 1F 1R
-		 play.roll(1);
-		
-//		 play.getCurrentTry(); // 1F 2R
-		 play.roll(4);
-		
-//		 play.getCurrentTry(); // 2F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 3F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 4F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 5F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 6F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 7F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 8F 1R
-		
-		 play.roll(10);
-//		 play.getCurrentTry(); // 9F 1R
-		
-		 play.roll(10);
-		 play.getCurrentTry(); // 10F 1R
+		try {
+			// play.getCurrentTry(); // 1F 1R
+			play.roll(1);
 
-		 play.roll(8);
-		 play.getCurrentTry(); // 10F 2R
-		
-		 play.roll(2);
-		 play.getCurrentTry(); // 10F 3R
-		
-//		 play.roll(8); // 10F 4T로 변수가 바뀜
-		
-		 fail("10 Frame 3roll까지 모든 투구를 완료 했으므로 GameOver");
-		
-		 } catch (GameOverException e) {
-		 assertEquals("Game Over~", e.getMessage());
-		 }
-		
-		 try {
-		 play.roll(4);// 10F 4R -> exception 발생
-		
-		 fail("10 Frame 3roll까지만 투구가 가능하므로 그보다 많이 투구를 하면 exception발생");
-		 } catch (GameOverException e) {
-		 assertEquals("Game Over!!! 더이상 공을 던질 수 없습니다.", e.getMessage());
-		 }
+			// play.getCurrentTry(); // 1F 2R
+			play.roll(4);
+
+			// play.getCurrentTry(); // 2F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 3F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 4F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 5F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 6F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 7F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 8F 1R
+
+			play.roll(10);
+			// play.getCurrentTry(); // 9F 1R
+
+			play.roll(10);
+			play.getCurrentTry(); // 10F 1R
+
+			play.roll(8);
+			play.getCurrentTry(); // 10F 2R
+
+			play.roll(2);
+			play.getCurrentTry(); // 10F 3R
+
+			// play.roll(8); // 10F 4T로 변수가 바뀜
+
+			fail("10 Frame 3roll까지 모든 투구를 완료 했으므로 GameOver");
+
+		} catch (GameOverException e) {
+			assertEquals("Game Over~", e.getMessage());
+		}
+
+		try {
+			play.roll(4);// 10F 4R -> exception 발생
+
+			fail("10 Frame 3roll까지만 투구가 가능하므로 그보다 많이 투구를 하면 exception발생");
+		} catch (GameOverException e) {
+			assertEquals("Game Over!!! 더이상 공을 던질 수 없습니다.", e.getMessage());
+		}
 	}
 
 	public void testPrintFrameNumber() throws Exception {
@@ -96,6 +121,13 @@ public class BowlingGameTest extends TestCase {
 		assertEquals('5', play.board.get(2).frame.get(0).getSymbol());
 		assertEquals('/', play.board.get(2).frame.get(1).getSymbol());
 
+	}
+
+	public void testgetFrameScore() throws Exception {
+		for(int i = 0 ; i < completeBoard.board.size(); i++){
+			Frame frame = completeBoard.board.get(i);
+			System.out.println(frame.getScore());
+		}
 	}
 
 }

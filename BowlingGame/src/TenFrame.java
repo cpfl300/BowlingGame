@@ -6,6 +6,7 @@ public class TenFrame extends Frame {
 	int frameNumber;
 	int rollcount = 0;
 	int tenFrameRoll = 0;
+	protected int score = 0;
 	
 	TenFrame(int frameNumber){
 		super(frameNumber);
@@ -43,8 +44,14 @@ public class TenFrame extends Frame {
 		}
 		else super.setSymbol(point);
 		
+		this.score += point;
+		
 		if(rollcount == 3) {
 			throw new GameOverException("Game Over~");
 		}
+	}
+	
+	public int getScore(){
+		return this.score;
 	}
 }
