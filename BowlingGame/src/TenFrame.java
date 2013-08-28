@@ -6,7 +6,6 @@ public class TenFrame extends Frame {
 	int frameNumber;
 	int rollcount = 0;
 	int tenFrameRoll = 0;
-	protected int score = 0;
 	
 	TenFrame(int frameNumber){
 		super(frameNumber);
@@ -23,6 +22,11 @@ public class TenFrame extends Frame {
 		frame.add(Symbol.BLANK);
 		frame.add(Symbol.BLANK);
 		frame.add(Symbol.BLANK);
+		
+		scores = new ArrayList<Integer>();
+		scores.add(0);
+		scores.add(0);
+		scores.add(0);
 	}	
 
 	public void setSymbol(int point) throws GameOverException {
@@ -41,17 +45,15 @@ public class TenFrame extends Frame {
 			System.out.println("STRIKE!!!");
 			
 			frame.set(rollIdx++,Symbol.STRIKE);
+			scores.set(scoresIdx++, point);
+			
 		}
 		else super.setSymbol(point);
 		
-		this.score += point;
 		
 		if(rollcount == 3) {
 			throw new GameOverException("Game Over~");
 		}
 	}
 	
-	public int getScore(){
-		return this.score;
-	}
 }

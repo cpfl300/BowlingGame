@@ -123,11 +123,11 @@ public class BowlingGameTest extends TestCase {
 
 	}
 
-	public void testgetFrameScore() throws Exception {
-		for(int i = 0 ; i < completeBoard.board.size(); i++){
-			Frame frame = completeBoard.board.get(i);
-			System.out.println(frame.getScore());
-		}
+	public void testGetFrameScore() throws Exception {
+		assertEquals((Integer)9, completeBoard.board.get(0).scores.get(0));
+		assertEquals((Integer)0, completeBoard.board.get(1).scores.get(1));
+		assertEquals((Integer)8, completeBoard.board.get(6).scores.get(0));
+		
 	}
 
 }

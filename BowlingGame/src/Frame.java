@@ -5,10 +5,11 @@ import java.util.List;
 public class Frame {
 	private int frameNumber;
 	protected int rollIdx = 0;
+	protected int scoresIdx = 0;
 	private int point = 0;
-	protected int score = 0;
 	
 	public List<Symbol> frame;
+	public List<Integer> scores;
 	
 	Frame(int frameNumber){
 		this.frameNumber = frameNumber;
@@ -23,11 +24,15 @@ public class Frame {
 		
 		frame.add(Symbol.BLANK);
 		frame.add(Symbol.BLANK);
+		
+		scores = new ArrayList<Integer>();
+		scores.add(0);
+		scores.add(0);
 	}	
 	
 	public void setSymbol(int point) throws GameOverException {
 		
-		this.score += point;
+		scores.set(scoresIdx++, point);
 		
 		if(point == 10) {
 			System.out.println("STRIKE!!!");
@@ -87,7 +92,4 @@ public class Frame {
 		return frame;
 	}
 	
-	public int getScore(){
-		return this.score;
-	}
 }
