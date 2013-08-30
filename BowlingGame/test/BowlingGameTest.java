@@ -124,10 +124,19 @@ public class BowlingGameTest extends TestCase {
 	}
 
 	public void testGetFrameScore() throws Exception {
-		assertEquals((Integer)9, completeBoard.board.get(0).scores.get(0));
-		assertEquals((Integer)0, completeBoard.board.get(1).scores.get(1));
-		assertEquals((Integer)8, completeBoard.board.get(6).scores.get(0));
-		
+		assertEquals((Integer)1, completeBoard.board.get(0).scores.get(1));
+		assertEquals((Integer)10, completeBoard.board.get(2).scores.get(0));
+		assertEquals((Integer)8, completeBoard.board.get(4).scores.get(0));
+		assertEquals(null, completeBoard.board.get(5).scores.get(1));
+		assertEquals((Integer)1, completeBoard.board.get(6).scores.get(1));
+		assertEquals((Integer)8, completeBoard.board.get(8).scores.get(0));
+		assertEquals((Integer)1, completeBoard.board.get(9).scores.get(2));
+	}
+	
+	public void testGetPoint() throws Exception {
+		assertEquals(8, completeBoard.board.get(4).getFramePoint());
+		assertEquals(10, completeBoard.board.get(7).getFramePoint());
+		assertEquals(20, completeBoard.board.get(9).getFramePoint());
 	}
 
 }

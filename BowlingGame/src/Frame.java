@@ -32,18 +32,25 @@ public class Frame {
 	
 	public void setSymbol(int point) throws GameOverException {
 		
-		scores.set(scoresIdx++, point);
+		
 		
 		if(point == 10) {
 			System.out.println("STRIKE!!!");
 			
 			frame.set(rollIdx++, Symbol.STRIKE);
 			frame.set(rollIdx, Symbol.BLANK);
+			
+			scores.set(scoresIdx++, point);
+			scores.set(scoresIdx, null);
+			
 			this.point = point;
+			
+			return;
 		}
 		
 		if(this.point != 10 && this.point + point == 10){
 			System.out.println("SPARE!!!");
+			scores.set(scoresIdx++, point);
 			
 			frame.set(rollIdx, Symbol.SPARE);
 			return;
@@ -52,6 +59,8 @@ public class Frame {
 		this.point = point;
 		
 		System.out.printf("%d개의 핀을 쓰러뜨렸습니다.\n", point);
+		
+		scores.set(scoresIdx++, point);
 		
 		switch (point) {
 		case 9: 
@@ -90,6 +99,15 @@ public class Frame {
 	
 	public List<Symbol> getFrame() {
 		return frame;
+	}
+	
+	public int getFramePoint(){
+		int framePoint = 0;
+		for(int i =0 ; i < scores.size(); i++){
+			framePoint += scores.get(i);
+		}
+		return framePoint;
+
 	}
 	
 }

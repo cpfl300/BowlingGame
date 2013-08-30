@@ -18,7 +18,6 @@ public class TenFrame extends Frame {
 	
 	public void initializeTenFrame(){
 		frame = new ArrayList<Symbol>();
-		
 		frame.add(Symbol.BLANK);
 		frame.add(Symbol.BLANK);
 		frame.add(Symbol.BLANK);
