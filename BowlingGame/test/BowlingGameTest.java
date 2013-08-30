@@ -138,5 +138,9 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(10, completeBoard.board.get(7).getFramePoint());
 		assertEquals(20, completeBoard.board.get(9).getFramePoint());
 	}
+	
+	public void testBoardPrint() throws Exception {
+		completeBoard.printScoreBoard();
+	}
 
 }
