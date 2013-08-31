@@ -8,6 +8,7 @@ public class TenFrame extends Frame {
 	TenFrame(int frameNumber){
 		super(frameNumber);
 		this.frameNumber = frameNumber;
+		initializeTenFrame();
 	}
 	
 	int getFrameNumber(){
@@ -30,7 +31,7 @@ public class TenFrame extends Frame {
 		rollcount++;
 		tenFrameRoll++;
 		
-		if(tenFrameRoll == 1 && point != 10){
+		if(tenFrameRoll == 1 && point != 10){ // 첫 Roll에 스트라이크가 나오지 않음 
 			rollcount++;
 		}
 		
@@ -38,15 +39,13 @@ public class TenFrame extends Frame {
 			throw new GameOverException("Game Over!!! 더이상 공을 던질 수 없습니다.");
 		}
 		
-		if(point == 10){
-			System.out.println("STRIKE!!!");
-			
+		if(point == 10){ // 스트라이크 일 때 
 			frame.set(rollIdx++,Symbol.STRIKE);
 			scores.set(scoresIdx++, point);
 			
+			System.out.println("STRIKE!!!");
 		}
 		else super.setSymbol(point);
-		
 		
 		if(rollcount == 3) {
 			throw new GameOverException("Game Over~");

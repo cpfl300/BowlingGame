@@ -26,6 +26,8 @@ public class BowlingGame extends Board {
 	public void roll(int point) throws GameOverException {
 
 		board.get(currentFrame - 1).setSymbol(point);
+		callCalculator();
+		printScoreBoard();
 
 		currentTry++;
 
@@ -36,21 +38,23 @@ public class BowlingGame extends Board {
 			}
 		}
 	}
-
+	
 	public static void main(String[] args) throws GameOverException {
 
 		BowlingGame playerMaked = new BowlingGame();	
 		TenFrame terminal = (TenFrame) playerMaked.board.get(9);
 		Scanner input = new Scanner(System.in);
 		
-		while(terminal.rollcount != 3){
+		while(true){
 			try{
 			playerMaked.roll(input.nextInt());
 			} catch(GameOverException e){
+				playerMaked.calculator(terminal);;
+				playerMaked.printScoreBoard();
 				System.out.println(e.getMessage());
 			}
 		}
-		playerMaked.printScoreBoard();
+		
 
 	}
 }

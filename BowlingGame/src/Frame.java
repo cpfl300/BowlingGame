@@ -13,6 +13,7 @@ public class Frame {
 	
 	Frame(int frameNumber){
 		this.frameNumber = frameNumber;
+		initializeFrame();
 	}
 	
 	int getFrameNumber(){
@@ -49,10 +50,10 @@ public class Frame {
 		}
 		
 		if(this.point != 10 && this.point + point == 10){
-			System.out.println("SPARE!!!");
 			scores.set(scoresIdx++, point);
-			
 			frame.set(rollIdx, Symbol.SPARE);
+
+			System.out.println("SPARE!!!");
 			return;
 		}
 
