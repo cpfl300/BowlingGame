@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TenFrame extends Frame {
 	int frameNumber;
-	int rollcount = 0;
+	public int rollcount = 0;
 	int tenFrameRoll = 0;
 	
 	TenFrame(int frameNumber){

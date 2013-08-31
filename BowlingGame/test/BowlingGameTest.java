@@ -3,7 +3,6 @@ import junit.framework.TestCase;
 public class BowlingGameTest extends TestCase {
 
 	BowlingGame play = null;
-
 	BowlingGame completeBoard;
 
 	@Override
@@ -148,4 +147,5 @@ public class BowlingGameTest extends TestCase {
 		}
 		completeBoard.printScoreBoard();
 	}
+	
 }
