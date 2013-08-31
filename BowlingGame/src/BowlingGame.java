@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class BowlingGame extends Board {
 
 	int currentFrame = 1;

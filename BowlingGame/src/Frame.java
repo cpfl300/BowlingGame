@@ -104,6 +104,7 @@ public class Frame {
 	public int getFramePoint(){
 		int framePoint = 0;
 		for(int i =0 ; i < scores.size(); i++){
+			if(scores.get(i)!=null)
 			framePoint += scores.get(i);
 		}
 		return framePoint;

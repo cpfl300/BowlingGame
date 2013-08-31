@@ -3,36 +3,35 @@ import junit.framework.TestCase;
 public class BowlingGameTest extends TestCase {
 
 	BowlingGame play = null;
-	
+
 	BowlingGame completeBoard;
-	
 
 	@Override
 	protected void setUp() throws Exception {
-			play = new BowlingGame();
-			completeBoard = new BowlingGame();
-			completeBoard.roll(9);
+		play = new BowlingGame();
+		completeBoard = new BowlingGame();
+		completeBoard.roll(9);
+		completeBoard.roll(1);
+		completeBoard.roll(8);
+		completeBoard.roll(0);
+		completeBoard.roll(10);
+		completeBoard.roll(10);
+		completeBoard.roll(8);
+		completeBoard.roll(0);
+		completeBoard.roll(10);
+		completeBoard.roll(8);
+		completeBoard.roll(1);
+		completeBoard.roll(9);
+		completeBoard.roll(1);
+		completeBoard.roll(8);
+		completeBoard.roll(1);
+		completeBoard.roll(10);
+		completeBoard.roll(9);
+		try {
 			completeBoard.roll(1);
-			completeBoard.roll(8);
-			completeBoard.roll(0);
-			completeBoard.roll(10);
-			completeBoard.roll(10);
-			completeBoard.roll(8);
-			completeBoard.roll(0);
-			completeBoard.roll(10);
-			completeBoard.roll(8);
-			completeBoard.roll(1);
-			completeBoard.roll(9);
-			completeBoard.roll(1);
-			completeBoard.roll(8);
-			completeBoard.roll(1);
-			completeBoard.roll(10);
-			completeBoard.roll(9);
-			try{
-			completeBoard.roll(1);
-			}catch (GameOverException e){
-				
-			}
+		} catch (GameOverException e) {
+
+		}
 	}
 
 	public void testInitialize() throws Exception {
@@ -124,23 +123,29 @@ public class BowlingGameTest extends TestCase {
 	}
 
 	public void testGetFrameScore() throws Exception {
-		assertEquals((Integer)1, completeBoard.board.get(0).scores.get(1));
-		assertEquals((Integer)10, completeBoard.board.get(2).scores.get(0));
-		assertEquals((Integer)8, completeBoard.board.get(4).scores.get(0));
+		assertEquals((Integer) 1, completeBoard.board.get(0).scores.get(1));
+		assertEquals((Integer) 10, completeBoard.board.get(2).scores.get(0));
+		assertEquals((Integer) 8, completeBoard.board.get(4).scores.get(0));
 		assertEquals(null, completeBoard.board.get(5).scores.get(1));
-		assertEquals((Integer)1, completeBoard.board.get(6).scores.get(1));
-		assertEquals((Integer)8, completeBoard.board.get(8).scores.get(0));
-		assertEquals((Integer)1, completeBoard.board.get(9).scores.get(2));
+		assertEquals((Integer) 1, completeBoard.board.get(6).scores.get(1));
+		assertEquals((Integer) 8, completeBoard.board.get(8).scores.get(0));
+		assertEquals((Integer) 1, completeBoard.board.get(9).scores.get(2));
 	}
-	
+
 	public void testGetPoint() throws Exception {
 		assertEquals(8, completeBoard.board.get(4).getFramePoint());
 		assertEquals(10, completeBoard.board.get(7).getFramePoint());
 		assertEquals(20, completeBoard.board.get(9).getFramePoint());
 	}
-	
+
 	public void testBoardPrint() throws Exception {
 		completeBoard.printScoreBoard();
 	}
 
+	public void testCalculateScore() throws Exception {
+		for (int i = 0; i < 8; i++) { // 9번, 10번 프레임은 따로 처리가 필요 
+			completeBoard.calculator(completeBoard.board.get(i));
+		}
+		completeBoard.printScoreBoard();
+	}
 }
