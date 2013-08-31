@@ -41,17 +41,20 @@ public class Board {
 	protected void calculator(Frame fr){
 		score = fr.getFramePoint();
 		int frameNumber = fr.getFrameNumber();
+		Frame nextFrame = null;
+		
 		
 		if(frameNumber != 1 ) {
 //			Frame preFrame = board.get(frameNumber-2);
 			score += Integer.parseInt(calculatedScore.get(frameNumber-2));
 		}
-		Frame nextFrame = board.get(frameNumber);
-		
+		if(frameNumber != 10){
+			nextFrame = board.get(frameNumber);
+		}
 		// 스트라이크 일 때 점수계산
-		if(fr.frame.get(0).getSymbol() == 'X'){
+		if(fr.frame.get(0).getSymbol() == 'X' && frameNumber != 10){
 			score += nextFrame.scores.get(0);
-			if(nextFrame.frame.get(0).getSymbol() == 'X'){
+			if(nextFrame.frame.get(0).getSymbol() == 'X' && frameNumber != 9){
 				score += board.get(frameNumber+1).scores.get(0);
 			}
 			else{
@@ -60,7 +63,7 @@ public class Board {
 		}
 		
 		// 스페어 일 때 점수계산
-		if(fr.frame.get(1).getSymbol() == '/') score += nextFrame.scores.get(0);
+		if(fr.frame.get(1).getSymbol() == '/' && frameNumber != 10) score += nextFrame.scores.get(0);
 		
 		calculatedScore.set(frameNumber-1, Integer.toString(score));
 	}

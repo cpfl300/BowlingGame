@@ -143,7 +143,7 @@ public class BowlingGameTest extends TestCase {
 	}
 
 	public void testCalculateScore() throws Exception {
-		for (int i = 0; i < 8; i++) { // 9번, 10번 프레임은 따로 처리가 필요 
+		for (int i = 0; i < 10; i++) { 
 			completeBoard.calculator(completeBoard.board.get(i));
 		}
 		completeBoard.printScoreBoard();
