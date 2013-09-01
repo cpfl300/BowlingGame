@@ -26,8 +26,7 @@ public class Board {
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < board.get(i).frame.size(); j++) {
-				System.out
-						.printf("%2c ", board.get(i).frame.get(j).getSymbol());
+				System.out.printf("%2c ", board.get(i).frame.get(j).getSymbol());
 			}
 			System.out.print(" |");
 		}
@@ -37,6 +36,7 @@ public class Board {
 			System.out.printf("%7s|", calculatedScore.get(i));
 		}
 		System.out.println("");
+		
 	}
 
 	protected void calculator(Frame fr){
@@ -49,7 +49,6 @@ public class Board {
 		
 		
 		if(frameNumber != 1 ) {
-//			Frame preFrame = board.get(frameNumber-2);
 			score += Integer.parseInt(calculatedScore.get(frameNumber-2));
 		}
 		if(frameNumber != 10){

@@ -7,6 +7,7 @@ public class BowlingGame extends Board {
 
 	BowlingGame() {
 		makeBoard();
+		getCurrentTry();
 	}
 
 	private void makeBoard() {
@@ -20,15 +21,14 @@ public class BowlingGame extends Board {
 	}
 
 	public void getCurrentTry() {
-		System.out.printf("%d Frame, %d차 시기 입니다.\n", currentFrame, currentTry);
+		System.out.printf("%d Frame, %d차 시기 입니다.\n", currentFrame,currentTry);
 	}
 
 	public void roll(int point) throws GameOverException {
-
 		board.get(currentFrame - 1).setSymbol(point);
 		callCalculator();
 		printScoreBoard();
-
+		
 		currentTry++;
 
 		if (currentFrame != 10) {
@@ -37,6 +37,7 @@ public class BowlingGame extends Board {
 				currentTry = 1;
 			}
 		}
+		getCurrentTry();
 	}
 	
 	public static void main(String[] args) throws GameOverException {
